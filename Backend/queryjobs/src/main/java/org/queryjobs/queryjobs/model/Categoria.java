@@ -23,7 +23,7 @@ public class Categoria {
 	
 	@NotNull
 	@Size( min=5, max = 35 )
-	private String Tipo_trabalho;
+	private String tipotrabalho;
 
 
 }
