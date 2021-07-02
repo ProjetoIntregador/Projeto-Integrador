@@ -22,7 +22,7 @@ public class Categoria {
 	private long id;
 	
 	@NotNull
-	@Size( min=5, max = 35 )
+	@Size( min=7, max = 150 )
 	private String tipotrabalho;
 
 
