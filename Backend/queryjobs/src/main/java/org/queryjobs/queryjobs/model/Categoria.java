@@ -8,6 +8,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data 
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_Categoria")
 public class Categoria {
@@ -20,19 +25,5 @@ public class Categoria {
 	@Size( min=5, max = 35 )
 	private String Tipo_trabalho;
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getTipo_trabalho() {
-		return Tipo_trabalho;
-	}
-
-	public void setTipo_trabalho(String tipo_trabalho) {
-		Tipo_trabalho = tipo_trabalho;
-	}
 }
