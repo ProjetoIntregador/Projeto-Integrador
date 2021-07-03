@@ -8,3 +8,5 @@ facilitando o contato inicial entre desenvolvedores e clientes. Assim gerando ma
 <br>
 29/06/2021
 <p>Começamos a criar nosso código feito no Eclipse com o Springboot. Foi criada nosso pacote de comunicação com o MySQL e uma classe Model.</p>
+
+Acompanhe como estamos gerenciando o nosso trabalho pelo Trello: https://trello.com/b/stSWKdK7/projeto-integrador-generation
