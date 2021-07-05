@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data 
-@NoArgsConstructor
+@NoArgsConstructor 
 @Entity
 @Table(name = "tb_Categoria")
 public class Categoria {
@@ -21,9 +21,16 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
-	@Size( min=7, max = 150 )
+	@NotNull(message="O atributo tipotrabalho é obrigatório!")
+	@Size(min=1, max=250, message="O atributo descrição deve conter no mínimo 1 carecter e no máximo 250")
 	private String tipotrabalho;
 
-
+	@NotNull(message="O atributo descrição é obrigatório!")
+	@Size(min=1, max=250, message="O atributo descrição deve conter no mínimo 1 carecter e no máximo 250")
+	private String descricao;	
+	
+	@NotNull(message="O atributo palavrachave é obrigatório!")
+	@Size(min=1, max=250, message="O atributo descrição deve conter no mínimo 1 carecter e no máximo 250")
+	private String palavrachave;
+	
 }
