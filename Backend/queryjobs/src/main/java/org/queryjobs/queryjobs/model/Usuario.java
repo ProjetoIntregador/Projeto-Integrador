@@ -1,5 +1,8 @@
 package org.queryjobs.queryjobs.model;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,9 +33,10 @@ public class Usuario {
 	@Size(min=10 , max=300)
 	private String nomeusuario;
 	
-	@NotNull(message="A idade é obrigatório!")
-	@Size(min=1 , max=3 )
-	private int idade; 
+	@NotNull(message="A idade é obrigatória!")
+	@Column(name = "dt_nascimento")
+	@JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate datanascimento; 
 	
 	@NotNull(message="Esta opção é obrigatória!")
 	private Boolean empregador;

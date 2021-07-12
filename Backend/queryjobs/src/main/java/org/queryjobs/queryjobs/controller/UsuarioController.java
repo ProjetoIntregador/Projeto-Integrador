@@ -44,14 +44,14 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLogin> autenticationUsuario(@RequestBody Optional<UsuarioLogin> usuario) {
-		return usuarioService.logarUsuario(usuario).map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<UsuarioLogin> autenticationUsuario(@RequestBody Optional<UsuarioLogin> email) {
+		return usuarioService.logarUsuario(email).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario usuario) {
-		Optional<Usuario> novoUsuario = usuarioService.cadastrarUsuario(usuario);
+	public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario email) {
+		Optional<Usuario> novoUsuario = usuarioService.cadastrarUsuario(email);
 		try {
 				return ResponseEntity.ok(novoUsuario.get());
 		} catch (Exception e) {
@@ -61,8 +61,8 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/alterar")
-	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario){
-		Optional<Usuario> updateUsuario = usuarioService.atualizarUsuario(usuario);
+	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario email){
+		Optional<Usuario> updateUsuario = usuarioService.atualizarUsuario(email);
 		try {
 			return ResponseEntity.ok(updateUsuario.get());
 		} catch (Exception e) {

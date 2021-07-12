@@ -1,6 +1,8 @@
 package org.queryjobs.queryjobs.service;
 
 import java.nio.charset.Charset;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
@@ -22,10 +24,16 @@ public class UsuarioService {
 
 	public Optional<Usuario> cadastrarUsuario(Usuario email) {
 		
-		
 		if(usuarioRepository.findByEmail(email.getEmail()).isPresent())
-			return null;
+			throw new ResponseStatusException(
+			          	HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
+	
+		int datanascimento = Period.between(email.getDatanascimento(), LocalDate.now()).getYears();
 		
+		if(datanascimento < 18)
+			throw new ResponseStatusException(
+						HttpStatus.BAD_REQUEST, "Usuário menor de 18 anos", null);
+			
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		String senhaEncoder = encoder.encode(email.getSenha());
@@ -38,7 +46,13 @@ public class UsuarioService {
 	public Optional<Usuario> atualizarUsuario(Usuario email){
 		
 		if(usuarioRepository.findById(email.getId()).isPresent()) {
-					
+			
+			int datanascimento = Period.between(email.getDatanascimento(), LocalDate.now()).getYears();
+			
+			if(datanascimento < 18)
+				throw new ResponseStatusException(
+							HttpStatus.BAD_REQUEST, "Usuário menor de 18 anos", null);
+			
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			
 			String senhaEncoder = encoder.encode(email.getSenha());
@@ -75,7 +89,9 @@ public class UsuarioService {
 
 			}
 		}
-		return null;
+
+		throw new ResponseStatusException(
+				HttpStatus.UNAUTHORIZED, "Usuário ou senha inválidos!", null);
 	}
 
 }
