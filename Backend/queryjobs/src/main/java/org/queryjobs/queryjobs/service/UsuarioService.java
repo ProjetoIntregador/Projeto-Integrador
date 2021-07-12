@@ -23,7 +23,7 @@ public class UsuarioService {
 	public Optional<Usuario> cadastrarUsuario(Usuario email) {
 		
 		
-		if(usuarioRepository.findByUsuario(email.getEmail()).isPresent())
+		if(usuarioRepository.findByEmail(email.getEmail()).isPresent())
 			return null;
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -58,7 +58,7 @@ public class UsuarioService {
 	public Optional<UsuarioLogin> logarUsuario(Optional<UsuarioLogin> usuarioLogin) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<Usuario> email = usuarioRepository.findByUsuario(usuarioLogin.get().getEmail());
+		Optional<Usuario> email = usuarioRepository.findByEmail(usuarioLogin.get().getEmail());
 
 		if (email.isPresent()) {
 			if (encoder.matches(usuarioLogin.get().getSenha(), email.get().getSenha())) {
