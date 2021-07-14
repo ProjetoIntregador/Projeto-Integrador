@@ -8,6 +8,7 @@ import org.queryjobs.queryjobs.model.UsuarioLogin;
 import org.queryjobs.queryjobs.repository.UsuarioRepository;
 import org.queryjobs.queryjobs.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -84,5 +85,11 @@ public class UsuarioController {
 		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.descurtir(id));
 	}
 	
+	@GetMapping("/plus")
+	public ResponseEntity<List<Usuario>> getPlus() {
+		return ResponseEntity.ok(usuarioRepository.findAll(Sort.by(Sort.Direction.DESC, "curtidas")));
+	}
+	
+
 }
 
