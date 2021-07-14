@@ -10,10 +10,14 @@ import org.queryjobs.queryjobs.model.Usuario;
 import org.queryjobs.queryjobs.model.UsuarioLogin;
 import org.queryjobs.queryjobs.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+
+
 
 @Service
 public class UsuarioService {
@@ -93,5 +97,39 @@ public class UsuarioService {
 		throw new ResponseStatusException(
 				HttpStatus.UNAUTHORIZED, "Usuário ou senha inválidos!", null);
 	}
+	
+	
+	//Implementações
+	
+
+	public Usuario curtir(Long id) {
+
+		Usuario usuario = buscarPostagemPeloId(id);
+		usuario.setCurtidas(usuario.getCurtidas() + 1);
+		return usuarioRepository.save(usuario);
+
+	}
+
+	public Usuario descurtir(Long id) {
+
+		Usuario usuario = buscarPostagemPeloId(id);
+		if (usuario.getCurtidas() > 0) {
+			usuario.setCurtidas(usuario.getCurtidas() - 1);
+		} 
+		else {
+			usuario.setCurtidas(0);
+		}
+		return usuarioRepository.save(usuario);
+
+	}
+
+	private Usuario buscarPostagemPeloId(Long id) {
+		Usuario usuarioSalva = usuarioRepository.findById(id).orElse(null);
+		if (usuarioSalva == null) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return usuarioSalva;
+	}
+	
 
 }

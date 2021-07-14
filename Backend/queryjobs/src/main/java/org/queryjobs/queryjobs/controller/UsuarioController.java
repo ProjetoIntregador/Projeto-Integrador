@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -31,6 +30,7 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Usuario>> getAll() {
@@ -69,6 +69,20 @@ public class UsuarioController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+	
+	//Implementações
+	@PutMapping("/curtir/{id}")
+	public ResponseEntity<Usuario> putCurtirPostagemId (@PathVariable Long id){
+		
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.curtir(id));
+	}
+	
 
+	@PutMapping("/descurtir/{id}")
+	public ResponseEntity<Usuario> putDescurtirPostagemId (@PathVariable Long id){
+		
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.descurtir(id));
+	}
+	
 }
 
