@@ -1,4 +1,5 @@
-# Projeto-Integrador Generation: Query Jobs
+# Projeto-Integrador Generation: Query Jobs 
+<p>Este Repositório corresponde ao  back-end do projeto que, foi desenvolvido com o framework spring boot </p>
 <p>Nosso Projeto é baseado no 8º Objetivo de Desenvolvimento Sustentável da agenda de 2030 da Organização das Nações Unidas. <br> Que pode ser resumido em garantir um trabalho digno e sustentável para todos.</p>
 <p2>Partindo desse princípio, nossa proposta é criar um e-commerce para programadores - uma profissão que cresce cada vez mais no mundo todo - 
 facilitando o contato inicial entre desenvolvedores e clientes. Assim gerando mais empregos e oportunidades para todes.</p2>
